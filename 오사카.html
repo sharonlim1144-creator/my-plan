@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오사카 3박 4일 여행 일정</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .active-tab { background-color: #2563eb; color: white; transform: scale(1.05); }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background-color: #dbeafe;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 pb-20">
+
+    <!-- Header -->
+    <div class="bg-blue-600 text-white p-6 rounded-b-3xl shadow-lg sticky top-0 z-30">
+        <h1 class="text-2xl font-bold mb-1">🇯🇵 오사카 3박 4일</h1>
+        <p class="text-blue-100 text-sm opacity-90">내 손안의 실시간 여행 가이드</p>
+    </div>
+
+    <!-- Quick Checklist -->
+    <div class="p-4 mt-2">
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100">
+            <h2 class="font-bold mb-3 flex items-center gap-2 text-slate-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                필수 준비물
+            </h2>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-50">
+                    <input type="checkbox" class="rounded text-blue-600"> 여권/항공권
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-50">
+                    <input type="checkbox" class="rounded text-blue-600"> 주유패스
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-50">
+                    <input type="checkbox" class="rounded text-blue-600"> eSIM/Wi-Fi
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-50">
+                    <input type="checkbox" class="rounded text-blue-600"> 동전지갑
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day Navigation -->
+    <div class="flex px-4 gap-2 my-4 sticky top-[88px] bg-slate-50/90 backdrop-blur-sm py-3 z-20 overflow-x-auto no-scrollbar">
+        <button onclick="showDay(1)" id="btn-1" class="day-btn flex-none px-6 py-2 rounded-full font-bold bg-white text-slate-500 border border-slate-200 shadow-sm active-tab">1일차</button>
+        <button onclick="showDay(2)" id="btn-2" class="day-btn flex-none px-6 py-2 rounded-full font-bold bg-white text-slate-500 border border-slate-200 shadow-sm">2일차</button>
+        <button onclick="showDay(3)" id="btn-3" class="day-btn flex-none px-6 py-2 rounded-full font-bold bg-white text-slate-500 border border-slate-200 shadow-sm">3일차</button>
+        <button onclick="showDay(4)" id="btn-4" class="day-btn flex-none px-6 py-2 rounded-full font-bold bg-white text-slate-500 border border-slate-200 shadow-sm">4일차</button>
+    </div>
+
+    <!-- Itinerary Content -->
+    <div class="px-4">
+        <!-- Day 1 -->
+        <div id="day-1" class="day-content block">
+            <div class="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 mb-6">
+                <h3 class="text-lg font-bold text-blue-700 mb-6">시내 도착 및 도톤보리 야경</h3>
+                <div class="relative space-y-8 timeline-line">
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">✈️</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <p class="text-xs font-bold text-blue-500">14:00</p>
+                                <button onclick="goMap('간사이 공항')" class="text-slate-400">🗺️</button>
+                            </div>
+                            <h4 class="font-bold">간사이 공항 도착</h4>
+                            <p class="text-sm text-slate-500">라피트 열차 이용 난바역 이동</p>
+                        </div>
+                    </div>
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🏨</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <p class="text-xs font-bold text-blue-500">15:30</p>
+                                <button onclick="goMap('난바역')" class="text-slate-400">🗺️</button>
+                            </div>
+                            <h4 class="font-bold">숙소 체크인</h4>
+                            <p class="text-sm text-slate-500">난바/도톤보리 인근 짐 보관</p>
+                        </div>
+                    </div>
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">📸</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <p class="text-xs font-bold text-blue-500">17:30</p>
+                                <button onclick="goMap('글리코상')" class="text-slate-400">🗺️</button>
+                            </div>
+                            <h4 class="font-bold">도톤보리 산책</h4>
+                            <p class="text-sm text-slate-500">글리코상 인증샷 및 리버크루즈</p>
+                        </div>
+                    </div>
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🍜</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <p class="text-xs font-bold text-blue-500">19:30</p>
+                                <button onclick="goMap('도톤보리 맛집')" class="text-slate-400">🗺️</button>
+                            </div>
+                            <h4 class="font-bold">저녁 식사</h4>
+                            <p class="text-sm text-slate-500">이치란 라멘 또는 오코노미야키</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div id="day-2" class="day-content hidden">
+            <div class="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 mb-6">
+                <h3 class="text-lg font-bold text-blue-700 mb-6">유니버설 스튜디오 재팬(USJ)</h3>
+                <div class="relative space-y-8 timeline-line">
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🎢</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold">USJ 오픈런</h4>
+                            <p class="text-sm text-slate-500">닌텐도 월드 확약권 우선 확보</p>
+                        </div>
+                    </div>
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🍔</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold">테마파크 점심</h4>
+                            <p class="text-sm text-slate-500">키노피오 카페 또는 루이즈 N.Y. 피자</p>
+                        </div>
+                    </div>
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🌃</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <button onclick="goMap('우메다 공중정원')" class="text-slate-400">🗺️</button>
+                            </div>
+                            <h4 class="font-bold">우메다 야경</h4>
+                            <p class="text-sm text-slate-500">공중정원 전망대 (주유패스 무료시간 확인)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div id="day-3" class="day-content hidden">
+            <div class="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 mb-6">
+                <h3 class="text-lg font-bold text-blue-700 mb-6">교토 당일치기 여행</h3>
+                <div class="relative space-y-8 timeline-line">
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🚃</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold">교토 이동</h4>
+                            <p class="text-sm text-slate-500">한큐/게이한 전철 이용</p>
+                        </div>
+                    </div>
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">⛩️</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <button onclick="goMap('청수사')" class="text-slate-400">🗺️</button>
+                            </div>
+                            <h4 class="font-bold">기요미즈데라(청수사)</h4>
+                            <p class="text-sm text-slate-500">니넨자카, 산넨자카 산책</p>
+                        </div>
+                    </div>
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🦊</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <button onclick="goMap('후시미 이나리 신사')" class="text-slate-400">🗺️</button>
+                            </div>
+                            <h4 class="font-bold">후시미 이나리</h4>
+                            <p class="text-sm text-slate-500">천개의 토리이 인증샷</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div id="day-4" class="day-content hidden">
+            <div class="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 mb-6">
+                <h3 class="text-lg font-bold text-blue-700 mb-6">마지막 쇼핑 및 귀국</h3>
+                <div class="relative space-y-8 timeline-line">
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🏯</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <button onclick="goMap('오사카성')" class="text-slate-400">🗺️</button>
+                            </div>
+                            <h4 class="font-bold">오사카성 공원</h4>
+                            <p class="text-sm text-slate-500">천수각 관람 및 산책</p>
+                        </div>
+                    </div>
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🍱</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <button onclick="goMap('쿠로몬 시장')" class="text-slate-400">🗺️</button>
+                            </div>
+                            <h4 class="font-bold">쿠로몬 시장</h4>
+                            <p class="text-sm text-slate-500">시장 먹거리 점심 식사</p>
+                        </div>
+                    </div>
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🎁</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold">기념품 쇼핑</h4>
+                            <p class="text-sm text-slate-500">난바 시티 또는 백화점 쇼핑</p>
+                        </div>
+                    </div>
+                    <div class="relative flex gap-4">
+                        <div class="z-10 w-10 h-10 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center text-blue-600">🛫</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold">공항 출발</h4>
+                            <p class="text-sm text-slate-500">항공편 3시간 전 공항 도착 권장</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tip Section -->
+    <div class="px-4 mb-10">
+        <div class="bg-indigo-900 text-white rounded-2xl p-4 shadow-lg">
+            <h4 class="font-bold text-indigo-300 text-sm mb-2">💡 여행 꿀팁</h4>
+            <ul class="text-xs space-y-1 opacity-90 leading-relaxed">
+                <li>• 구글 맵 아이콘(🗺️)을 누르면 바로 길찾기가 가능합니다.</li>
+                <li>• 주유패스 무료 입장 시설은 운영 시간을 꼭 확인하세요.</li>
+                <li>• USJ는 입장 전 'USJ 공식 앱'에 입장권을 등록해 두세요.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Floating Map Button -->
+    <button onclick="goMap('Osaka')" class="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center transform active:scale-90 transition-all z-40">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+    </button>
+
+    <script>
+        function showDay(day) {
+            // Hide all content
+            document.querySelectorAll('.day-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.day-content').forEach(el => el.classList.remove('block'));
+            
+            // Show selected
+            document.getElementById('day-' + day).classList.remove('hidden');
+            document.getElementById('day-' + day).classList.add('block');
+
+            // Update buttons
+            document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active-tab'));
+            document.getElementById('btn-' + day).classList.add('active-tab');
+            
+            // Scroll to top of content
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goMap(place) {
+            const url = "https://www.google.com/maps/search/" + encodeURIComponent(place);
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
+
