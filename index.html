@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, MapPin, CreditCard, Info, ExternalLink, Train, Utensils, ShoppingBag, Camera, Coffee } from 'lucide-react';
+import { 
+  Calendar, 
+  Clock, 
+  MapPin, 
+  CreditCard, 
+  Info, 
+  ExternalLink, 
+  Train, 
+  Utensils, 
+  ShoppingBag, 
+  Camera, 
+  Coffee 
+} from 'lucide-react';
 
 const App = () => {
   const [activeDay, setActiveDay] = useState(1);
 
   // 구글 지도 검색 URL 생성 함수
   const getGoogleMapsUrl = (location) => {
-    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
+    const safeLocation = location || "호텔 닛코 오사카";
+    if (safeLocation === "호텔 이동" || safeLocation === "숙소") {
+      return `https://www.google.com/maps/search/?api=1&query=호텔+닛코+오사카`;
+    }
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(safeLocation)}`;
   };
 
   const itinerary = {
@@ -14,7 +30,7 @@ const App = () => {
       date: "4/29 (월)",
       title: "오사카 도착 및 도톤보리 밤 산책",
       items: [
-        { time: "20:00", activity: "간사이 공항 이동", location: "호텔 이동", category: "교통", cost: "-", icon: <Train size={18} /> },
+        { time: "20:00", activity: "간사이 공항 이동", location: "간사이 국제공항", category: "교통", cost: "-", icon: <Train size={18} /> },
         { time: "20:00", activity: "숙소 체크인", location: "호텔 닛코 오사카", category: "숙소", cost: "예약완료", memo: "신사이바시역 8번 출구 직결", icon: <MapPin size={18} /> },
         { time: "20:30", activity: "상점 구경하며 이동", location: "신사이바시스지 상점가", category: "교통", duration: "0.5h", icon: <ShoppingBag size={18} /> },
         { time: "21:00", activity: "글리코상 인증샷", location: "도톤보리 글리코 사인", category: "관광", duration: "1h", cost: "무료", warning: "인파 매우 많음 주의", icon: <Camera size={18} /> },
@@ -28,11 +44,11 @@ const App = () => {
       title: "오사카성 & 우메다 야경 투어",
       items: [
         { time: "08:30", activity: "오사카 성 관람", location: "오사카 성 천수각", category: "역사", duration: "1.5h", cost: "600엔", warning: "주유패스 무료 / 개장 시간 입장 권장", icon: <Camera size={18} /> },
-        { time: "10:00", activity: "고자부네 뱃놀이", location: "해자 뱃놀이 선착장", category: "체험", duration: "1h", cost: "1,500엔", warning: "골든위크 조기 매진 주의", icon: <Train size={18} /> },
+        { time: "10:00", activity: "고자부네 뱃놀이", location: "오사카성 고자부네 뱃놀이", category: "체험", duration: "1h", cost: "1,500엔", warning: "골든위크 조기 매진 주의", icon: <Train size={18} /> },
         { time: "12:00", activity: "점심 식사", location: "야키메시토멘", category: "식당", duration: "1.5h", cost: "약 2천엔", memo: "볶음밥과 라멘 인생 맛집", icon: <Utensils size={18} /> },
-        { time: "13:30", activity: "해유관 (수족관)", location: "카이유칸", category: "관광", duration: "2h", cost: "2,700엔", memo: "세계 최대급 수족관", warning: "공식 사이트 예약 필요", icon: <Camera size={18} /> },
+        { time: "13:30", activity: "해유관 (수족관)", location: "가이유칸", category: "관광", duration: "2h", cost: "2,700엔", memo: "세계 최대급 수족관", warning: "공식 사이트 예약 필요", icon: <Camera size={18} /> },
         { time: "15:30", activity: "덴포잔 대관람차", location: "덴포잔 대관람차", category: "전망", duration: "0.5h", cost: "800엔", memo: "투명 바닥 캡슐 추천", icon: <Camera size={18} /> },
-        { time: "18:30", activity: "야경 전망", location: "우메다 스카이빌딩", category: "전망", duration: "0.5h", cost: "1,500엔", warning: "클룩/KKday 사전 예매", icon: <Camera size={18} /> },
+        { time: "18:30", activity: "야경 전망", location: "우메다 스카이빌딩 공중정원 전망대", category: "전망", duration: "0.5h", cost: "1,500엔", warning: "클룩/KKday 사전 예매", icon: <Camera size={18} /> },
         { time: "19:00", activity: "저녁 식사", location: "규카츠 모토무라 우메다 에스트점", category: "식당", duration: "1.5h", cost: "약 3천엔", warning: "웨이팅 필수", icon: <Utensils size={18} /> },
         { time: "20:30", activity: "헵파이브 관람차", location: "HEP FIVE 관람차", category: "전망", duration: "1h", cost: "600엔", icon: <Camera size={18} /> },
       ]
@@ -47,7 +63,7 @@ const App = () => {
         { time: "13:30", activity: "점심 식사", location: "미즈야 차야", category: "식당", duration: "1.5h", cost: "약 2천엔", memo: "숲속 고즈넉한 분위기", icon: <Utensils size={18} /> },
         { time: "16:30", activity: "요시키엔 정원", location: "요시키엔", category: "자연", duration: "1h", cost: "1,200엔", icon: <Camera size={18} /> },
         { time: "19:30", activity: "저녁 식사", location: "야키니쿠 고리짱 우메다 본점", category: "식당", duration: "2h", cost: "약 8천엔", warning: "구글맵 실시간 예약 필수", icon: <Utensils size={18} /> },
-        { time: "21:30", activity: "온천 휴식", location: "나니와노유 온천", category: "온천", duration: "1.5h", cost: "850엔", memo: "새벽 1시까지 운영", icon: <Coffee size={18} /> },
+        { time: "21:30", activity: "온천 휴식", location: "천연온천 나니와노유", category: "온천", duration: "1.5h", cost: "850엔", memo: "새벽 1시까지 운영", icon: <Coffee size={18} /> },
       ]
     },
     4: {
@@ -55,37 +71,40 @@ const App = () => {
       title: "덴노지 투어 및 귀국 준비",
       items: [
         { time: "08:30", activity: "시텐노지 참배", location: "시텐노지", category: "역사", duration: "1.5h", cost: "300엔", icon: <Camera size={18} /> },
-        { time: "10:30", activity: "하루카스 300", location: "아베노하루카스 300 전망대", category: "전망", duration: "1.5h", cost: "1,800엔", warning: "60층 통유리 뷰", icon: <Camera size={18} /> },
+        { time: "10:30", activity: "하루카스 300", location: "아베노하루카스 300", category: "전망", duration: "1.5h", cost: "1,800엔", warning: "60층 통유리 뷰", icon: <Camera size={18} /> },
         { time: "12:00", activity: "쓰텐카쿠 인증샷", location: "쓰텐카쿠", category: "관광", duration: "1h", cost: "900엔", memo: "타워 슬라이드 체험 가능", icon: <Camera size={18} /> },
         { time: "13:00", activity: "점심 식사", location: "쿠시카츠 다루마 신세카이 본점", category: "식당", duration: "1.5h", cost: "약 3천엔", icon: <Utensils size={18} /> },
         { time: "14:30", activity: "구로몬 시장 먹방", location: "구로몬 시장", category: "문화", duration: "1.5h", icon: <Utensils size={18} /> },
         { time: "16:30", activity: "마지막 쇼핑", location: "난바 파크스", category: "쇼핑", duration: "1.5h", memo: "옥상 정원 산책 가능", icon: <ShoppingBag size={18} /> },
-        { time: "18:30", activity: "공항 특급 열차", location: "간사이 국제공항", category: "교통", duration: "1h", cost: "1,300엔", warning: "라피트 예약 권장", icon: <Train size={18} /> },
+        { time: "18:30", activity: "공항 특급 열차", location: "간사이 국제공항 제1터미널", category: "교통", duration: "1h", cost: "1,300엔", warning: "라피트 예약 권장", icon: <Train size={18} /> },
       ]
     }
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 text-slate-900 font-sans pb-24">
-      {/* Header */}
+      {/* Header Section */}
       <header className="bg-indigo-600 text-white p-6 rounded-b-3xl shadow-lg sticky top-0 z-50">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-bold flex items-center gap-2">
-            <MapPin size={24} /> Osaka Trip
-          </h1>
-          <span className="bg-white/20 px-3 py-1 rounded-full text-sm backdrop-blur-sm">4.29 - 5.02</span>
+          <div className="flex items-center gap-2">
+            <MapPin size={24} className="text-white" />
+            <h1 className="text-2xl font-bold tracking-tight">Osaka Guide</h1>
+          </div>
+          <span className="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
+            04.29 - 05.02
+          </span>
         </div>
         
-        {/* Day Selector */}
+        {/* Day Navigation */}
         <div className="flex justify-between gap-2 overflow-x-auto pb-1 no-scrollbar">
           {[1, 2, 3, 4].map(day => (
             <button
               key={day}
               onClick={() => setActiveDay(day)}
-              className={`flex-1 min-w-[70px] py-3 rounded-2xl transition-all duration-300 ${
+              className={`flex-1 min-w-[70px] py-3 rounded-2xl transition-all duration-300 transform ${
                 activeDay === day 
-                ? "bg-white text-indigo-600 shadow-md font-bold" 
-                : "bg-indigo-500/50 text-white hover:bg-indigo-400"
+                ? "bg-white text-indigo-600 shadow-xl font-bold scale-105" 
+                : "bg-indigo-500/40 text-white hover:bg-indigo-400"
               }`}
             >
               Day {day}
@@ -94,71 +113,77 @@ const App = () => {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="p-4 max-w-md mx-auto w-full">
-        <div className="mb-6 flex justify-between items-end">
-          <div>
-            <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-              <Calendar size={20} className="text-indigo-600" />
+      {/* Content Section */}
+      <main className="p-5 max-w-md mx-auto w-full flex-grow">
+        <div className="mb-8 flex justify-between items-end">
+          <div className="animate-in fade-in slide-in-from-left duration-500">
+            <h2 className="text-2xl font-extrabold text-slate-800 flex items-center gap-2">
+              <Calendar size={22} className="text-indigo-600" />
               {itinerary[activeDay].date}
             </h2>
-            <p className="text-slate-500 text-sm mt-1">{itinerary[activeDay].title}</p>
+            <p className="text-slate-500 text-sm mt-1 font-medium">{itinerary[activeDay].title}</p>
           </div>
-          <div className="text-[10px] text-slate-400 font-medium">카드를 클릭하면 지도로 연결됩니다</div>
+          <div className="text-[10px] text-slate-400 font-bold text-right leading-tight bg-slate-100 p-2 rounded-lg border border-slate-200">
+            카드를 클릭하면<br/>구글 지도로 연결
+          </div>
         </div>
 
-        {/* Timeline */}
-        <div className="space-y-4 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200">
+        {/* Vertical Timeline View */}
+        <div className="space-y-6 relative before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-0.5 before:bg-gradient-to-b before:from-indigo-200 before:to-slate-200">
           {itinerary[activeDay].items.map((item, idx) => (
-            <div key={idx} className="relative pl-12">
-              {/* Timeline dot */}
-              <div className="absolute left-0 top-1.5 w-10 h-10 bg-white border-2 border-indigo-600 rounded-full flex items-center justify-center z-10 text-indigo-600">
+            <div key={idx} className="relative pl-12 animate-in fade-in slide-in-from-bottom duration-300" style={{ animationDelay: `${idx * 100}ms` }}>
+              {/* Timeline Marker Icon */}
+              <div className="absolute left-0 top-1 w-10 h-10 bg-white border-2 border-indigo-600 rounded-full flex items-center justify-center z-10 text-indigo-600 shadow-md">
                 {item.icon}
               </div>
               
-              {/* Card - Clickable for Map */}
+              {/* Activity Card */}
               <a 
                 href={getGoogleMapsUrl(item.location)} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="block bg-white p-4 rounded-2xl shadow-sm border border-slate-100 active:scale-[0.98] hover:border-indigo-200 transition-all group"
+                className="block bg-white p-5 rounded-2xl shadow-sm border border-slate-200 active:scale-[0.97] hover:border-indigo-300 transition-all group overflow-hidden"
               >
-                <div className="flex justify-between items-start mb-1">
-                  <span className="text-xs font-bold text-indigo-600 flex items-center gap-1">
+                <div className="flex justify-between items-start mb-2">
+                  <span className="text-xs font-bold text-indigo-600 flex items-center gap-1.5 bg-indigo-50 px-2.5 py-1 rounded-full">
                     <Clock size={12} /> {item.time} {item.duration && `(${item.duration})`}
                   </span>
-                  <span className="text-[10px] bg-slate-100 px-2 py-0.5 rounded-full text-slate-500 uppercase font-semibold">
+                  <span className="text-[10px] bg-slate-100 px-2 py-0.5 rounded-md text-slate-500 uppercase font-bold tracking-wider">
                     {item.category}
                   </span>
                 </div>
                 
-                <h3 className="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors flex items-center gap-1">
+                <h3 className="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition-colors flex items-center justify-between">
                   {item.activity}
-                  <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <ExternalLink size={16} className="text-slate-300 group-hover:text-indigo-400 transition-colors" />
                 </h3>
-                <div className="flex items-center gap-1 text-xs text-slate-500 mt-1">
-                  <MapPin size={12} className="text-slate-400" /> {item.location}
+                
+                <div className="flex items-center gap-1.5 text-sm text-slate-500 mt-2 font-medium">
+                  <MapPin size={14} className="text-rose-400 shrink-0" /> 
+                  <span className="truncate">{item.location}</span>
                 </div>
 
-                {/* Additional Info */}
+                {/* Conditional Badges/Memos */}
                 {(item.cost || item.memo || item.warning) && (
-                  <div className="mt-3 pt-3 border-t border-slate-50 space-y-2">
+                  <div className="mt-4 pt-4 border-t border-slate-100 space-y-2.5">
                     {item.cost && item.cost !== "-" && (
-                      <div className="flex items-center gap-2 text-xs">
-                        <CreditCard size={12} className="text-green-600" />
-                        <span className="font-medium text-slate-700">{item.cost}</span>
+                      <div className="flex items-center gap-2.5 text-xs">
+                        <div className="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center">
+                          <CreditCard size={12} className="text-emerald-600" />
+                        </div>
+                        <span className="font-semibold text-slate-700">예상 비용: {item.cost}</span>
                       </div>
                     )}
                     {item.memo && (
-                      <div className="flex items-start gap-2 text-xs">
-                        <Info size={12} className="text-blue-500 mt-0.5 shrink-0" />
-                        <span className="text-slate-600 italic">{item.memo}</span>
+                      <div className="flex items-start gap-2.5 text-xs bg-blue-50/50 p-2.5 rounded-xl border border-blue-100">
+                        <Info size={14} className="text-blue-500 shrink-0" />
+                        <span className="text-blue-800 leading-relaxed font-medium">{item.memo}</span>
                       </div>
                     )}
                     {item.warning && (
-                      <div className="flex items-start gap-2 text-xs bg-amber-50 p-2 rounded-lg border border-amber-100">
-                        <Info size={12} className="text-amber-500 mt-0.5 shrink-0" />
-                        <span className="text-amber-700 font-medium">{item.warning}</span>
+                      <div className="flex items-start gap-2.5 text-xs bg-amber-50 p-2.5 rounded-xl border border-amber-100">
+                        <Info size={14} className="text-amber-500 shrink-0" />
+                        <span className="text-amber-800 font-bold leading-relaxed">{item.warning}</span>
                       </div>
                     )}
                   </div>
@@ -169,27 +194,37 @@ const App = () => {
         </div>
       </main>
 
-      {/* Floating Bottom Nav */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/90 backdrop-blur-md shadow-2xl rounded-full p-2 flex justify-around items-center border border-white/50 z-50">
-        <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-2 text-indigo-600 active:scale-95 transition-transform">
-          <MapPin size={20} />
-          <span className="text-[10px] font-bold">지도 앱</span>
+      {/* Floating Toolbar */}
+      <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/90 backdrop-blur-lg shadow-2xl rounded-[2rem] p-2 flex justify-around items-center border border-white/40 z-50">
+        <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-3 text-indigo-600 hover:bg-indigo-50 rounded-2xl transition-all flex-1">
+          <MapPin size={24} />
+          <span className="text-[10px] font-extrabold mt-1">전체 지도</span>
         </a>
-        <div className="w-px h-6 bg-slate-200"></div>
-        <button className="flex flex-col items-center p-2 text-indigo-600 active:scale-95 transition-transform">
-          <Utensils size={20} />
-          <span className="text-[10px] font-bold">맛집검색</span>
-        </button>
-        <div className="w-px h-6 bg-slate-200"></div>
-        <a href="https://www.google.com/search?q=오사카+교통패스+정리" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-2 text-indigo-600 active:scale-95 transition-transform">
-          <Train size={20} />
-          <span className="text-[10px] font-bold">교통정보</span>
+        <div className="w-px h-8 bg-slate-200 opacity-50"></div>
+        <a href="https://www.google.com/search?q=오사카+맛집+추천+2024" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-3 text-indigo-600 hover:bg-indigo-50 rounded-2xl transition-all flex-1">
+          <Utensils size={24} />
+          <span className="text-[10px] font-extrabold mt-1">맛집 찾기</span>
         </a>
-      </div>
+        <div className="w-px h-8 bg-slate-200 opacity-50"></div>
+        <a href="https://www.google.com/search?q=간사이공항+라피트+시간표" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-3 text-indigo-600 hover:bg-indigo-50 rounded-2xl transition-all flex-1">
+          <Train size={24} />
+          <span className="text-[10px] font-extrabold mt-1">교통 정보</span>
+        </a>
+      </nav>
 
+      {/* Custom Styles for Animation and Hidden Scrollbar */}
       <style dangerouslySetInnerHTML={{ __html: `
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slide-in-from-bottom { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slide-in-from-left { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .animate-in { animation-fill-mode: both; animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+        .fade-in { animation-name: fade-in; }
+        .slide-in-from-bottom { animation-name: slide-in-from-bottom; }
+        .slide-in-from-left { animation-name: slide-in-from-left; }
+        .duration-300 { animation-duration: 300ms; }
+        .duration-500 { animation-duration: 500ms; }
       `}} />
     </div>
   );
